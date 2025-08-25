@@ -140,6 +140,7 @@ const Sessions = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
+                    <div className="flex justify-between align-center">
                     <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
                       <div className="flex items-center">
                         <Calendar className="h-4 w-4 mr-1" />
@@ -165,8 +166,8 @@ const Sessions = () => {
                     </div>
                     <div className="flex gap-2">
                       <Button
+                      variant="secondary"
                         onClick={() => handleViewDetails(session.id)}
-                        className="flex-1"
                       >
                         View Details
                       </Button>
@@ -174,11 +175,11 @@ const Sessions = () => {
                         <Button
                           variant="outline"
                           onClick={() => handleViewDetails(session.id)}
-                          className="flex-1"
                         >
                           Pay Now
                         </Button>
                       )}
+                    </div>
                     </div>
                   </CardContent>
                 </Card>

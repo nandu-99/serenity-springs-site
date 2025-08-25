@@ -194,7 +194,7 @@ const Blogs = () => {
                     {blog.readTime}
                   </div>
                 </div>
-                <Button variant="ghost" className="w-full group">
+                <Button variant="secondary" className="w-full group">
                   Read Article
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>

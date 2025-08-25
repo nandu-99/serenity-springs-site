@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Brain, Users, Heart, MessageCircle, User2, Flower2, Sparkles, Calendar } from "lucide-react";
+import { Brain, Users, Heart, MessageCircle, User2, Flower2, Sparkles, Calendar, Activity, Star, Music, Paintbrush } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Therapies = () => {
@@ -15,15 +15,6 @@ const Therapies = () => {
       color: "bg-primary/10 text-primary",
     },
     {
-      icon: Heart,
-      title: "Couples Therapy",
-      description: "Strengthen your relationship and improve communication with your partner.",
-      duration: "75 minutes",
-      price: "$150",
-      features: ["Communication skills", "Conflict resolution", "Intimacy building"],
-      color: "bg-primary/10 text-primary",
-    },
-    {
       icon: Users,
       title: "Group Therapy",
       description: "Connect and heal with others who share similar experiences.",
@@ -33,39 +24,39 @@ const Therapies = () => {
       color: "bg-primary/10 text-primary",
     },
     {
-      icon: User2,
-      title: "Anonymous Therapy",
-      description: "Maintain complete privacy while getting the help you need.",
-      duration: "45 minutes",
-      price: "$100",
-      features: ["Complete anonymity", "Secure platform", "Text or voice options"],
-      color: "bg-primary/10 text-primary",
-    },
-    {
-      icon: MessageCircle,
-      title: "Chat Therapy",
-      description: "Convenient text-based therapy sessions from anywhere.",
-      duration: "Unlimited messaging",
-      price: "$200/month",
-      features: ["Daily check-ins", "Async messaging", "Quick responses"],
-      color: "bg-primary/10 text-primary",
-    },
-    {
-      icon: Flower2,
+      icon: Activity,
       title: "Yoga Therapy",
-      description: "Combine physical movement with mental wellness practices.",
+      description: "Sessions using postures, breathing, and relaxation to enhance well-being.",
       duration: "60 minutes",
       price: "$80",
-      features: ["Mind-body connection", "Breathing exercises", "Meditation"],
+      features: ["Customized yoga poses", "Breathing exercises", "Relaxation techniques"],
       color: "bg-primary/10 text-primary",
     },
     {
-      icon: Sparkles,
+      icon: Star,
       title: "Spiritual Therapy",
-      description: "Explore spiritual dimensions of healing and personal growth.",
+      description: "Guided sessions to explore inner self, purpose, and emotional growth.",
       duration: "60 minutes",
-      price: "$110",
-      features: ["Meaning exploration", "Values clarification", "Spiritual practices"],
+      price: "$100",
+      features: ["Meditation practices", "Inner exploration", "Emotional guidance"],
+      color: "bg-primary/10 text-primary",
+    },
+    {
+      icon: Music,
+      title: "Music Therapy",
+      description: "Healing through music and rhythm to reduce stress and improve mood.",
+      duration: "50 minutes",
+      price: "$90",
+      features: ["Instrumental exercises", "Listening therapy", "Mood enhancement"],
+      color: "bg-primary/10 text-primary",
+    },
+    {
+      icon: Paintbrush,
+      title: "Arts & Crafts Therapy",
+      description: "Creative sessions using art and craft to relieve stress and express feelings.",
+      duration: "60 minutes",
+      price: "$85",
+      features: ["Drawing & painting", "Craft activities", "Emotional expression"],
       color: "bg-primary/10 text-primary",
     },
   ];
@@ -122,7 +113,7 @@ const Therapies = () => {
                 </div>
 
                 <Link to="/sessions">
-                  <Button className="w-full group-hover:shadow-medium transition-all">
+                  <Button className="w-full group-hover:shadow-medium transition-all mt-5">
                     Book Session
                   </Button>
                 </Link>

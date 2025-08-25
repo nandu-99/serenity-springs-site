@@ -14,8 +14,6 @@ const Navbar = () => {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/therapies", label: "Explore Therapies" },
-    { href: "/sessions", label: "Sessions" },
-    { href: "/suggest", label: "Suggest" },
     { href: "/blogs", label: "Blogs" },
   ];
 
@@ -49,17 +47,9 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowMoodTracker(true)}
-                className="ml-2"
-              >
-                Track Mood
-              </Button>
               <Link to="/login">
                 <Button size="sm" className="ml-2">
-                  Login
+                  Login / Signup
                 </Button>
               </Link>
             </div>
@@ -87,20 +77,9 @@ const Navbar = () => {
                       {link.label}
                     </Link>
                   ))}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setShowMoodTracker(true);
-                      setIsOpen(false);
-                    }}
-                    className="w-full"
-                  >
-                    Track Mood
-                  </Button>
                   <Link to="/login" onClick={() => setIsOpen(false)}>
                     <Button size="sm" className="w-full">
-                      Login
+                      Login / Signup
                     </Button>
                   </Link>
                 </div>

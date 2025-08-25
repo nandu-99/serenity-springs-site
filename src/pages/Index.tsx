@@ -1,32 +1,32 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Brain, Heart, Users, MessageCircle, Flower2, Star } from "lucide-react";
+import { ArrowRight, Brain, Heart, Users, MessageCircle, Flower2, Star, Flower, Feather, Music, Palette} from "lucide-react";
 
 const Index = () => {
   const featuredTherapies = [
     {
-      icon: Brain,
-      title: "Individual Therapy",
-      description: "One-on-one sessions tailored to your unique needs and goals.",
+      icon: Flower,
+      title: "Yoga Therapy",
+      description: "One-on-one sessions using postures, breathing, and relaxation to improve physical and mental wellness.",
       color: "text-primary",
     },
     {
-      icon: Users,
-      title: "Group Therapy",
-      description: "Connect and heal with others who share similar experiences.",
+      icon: Feather,
+      title: "Spiritual Therapy",
+      description: "Guided sessions to explore inner self, purpose, and emotional-spiritual growth.",
       color: "text-primary",
     },
     {
-      icon: Heart,
-      title: "Couples Therapy",
-      description: "Strengthen relationships and improve communication.",
+      icon: Music,
+      title: "Music Therapy",
+      description: "Healing through music and rhythm to reduce stress and enhance emotional expression.",
       color: "text-primary",
     },
     {
-      icon: MessageCircle,
-      title: "Chat Therapy",
-      description: "Convenient online therapy sessions from anywhere.",
+      icon: Palette,
+      title: "Arts & Crafts Therapy",
+      description: "Creative activities to express feelings, relieve stress, and boost mental well-being.",
       color: "text-primary",
     },
   ];
@@ -70,11 +70,6 @@ const Index = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Link to="/sessions">
-                <Button size="lg" variant="outline" className="min-w-[180px]">
-                  Book a Session
-                </Button>
-              </Link>
             </div>
           </div>
         </div>
@@ -112,7 +107,7 @@ const Index = () => {
 
           <div className="text-center mt-8">
             <Link to="/therapies">
-              <Button variant="ghost" className="group">
+              <Button className="group">
                 View All Therapies
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -203,7 +198,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-primary text-primary-foreground">
+      {/* <section className="py-20 bg-gradient-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
             Ready to Start Your Journey?
@@ -219,7 +214,7 @@ const Index = () => {
             </Button>
           </Link>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

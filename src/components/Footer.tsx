@@ -64,11 +64,11 @@ const Footer = () => {
 
           {/* Hours */}
           <div>
-            <h3 className="font-heading font-semibold text-foreground mb-4">Office Hours</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">Members</h3>
             <ul className="space-y-1 text-sm text-muted-foreground">
-              <li>Monday - Friday: 9:00 AM - 7:00 PM</li>
-              <li>Saturday: 10:00 AM - 4:00 PM</li>
-              <li>Sunday: Closed</li>
+              <li>Vaishnavi Samala</li>
+              <li>Gangotri CH</li>
+              <li>Chandana Kuthadi</li>
             </ul>
           </div>
         </div>
