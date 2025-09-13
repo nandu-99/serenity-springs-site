@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -7,9 +6,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Calendar, Clock, User, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, User, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const blogs = [
   {
@@ -272,158 +271,66 @@ Prioritizing sleep is a key investment in your mental health and overall well-be
   },
 ];
 
-const Blogs = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All Posts");
-  const categories = [...new Set(blogs.map((blog) => blog.category))];
+const BlogDetail = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
+  const blog = blogs.find((b) => b.id === id);
 
-  const filteredBlogs =
-    selectedCategory === "All Posts"
-      ? blogs
-      : blogs.filter((blog) => blog.category === selectedCategory);
-
-  const featured = filteredBlogs
-    .filter((b) => b.featured)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
+  if (!blog) {
+    return (
+      <div className="min-h-screen bg-background py-12">
+        <div className="container mx-auto px-4">
+          <h1 className="text-3xl font-bold">Blog not found</h1>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background py-12">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-            Wellness Blog
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Insights, tips, and resources to support your mental health journey
-          </p>
-        </div>
+        <Link to="/blogs">
+          <Button variant="ghost" className="mb-8">
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Blogs
+          </Button>
+        </Link>
 
-        {/* Categories */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          <Badge
-            variant={selectedCategory === "All Posts" ? "default" : "secondary"}
-            className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
-            onClick={() => setSelectedCategory("All Posts")}
-          >
-            All Posts
-          </Badge>
-          {categories.map((category) => (
-            <Badge
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
-              className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </Badge>
-          ))}
-        </div>
-
-        {/* Featured Post */}
-        {featured && (
-          <Link to={`/blogs/${featured.id}`}>
-            <Card className="mb-12 overflow-hidden border-primary/20 bg-gradient-soft group hover:shadow-large transition-all duration-300 cursor-pointer">
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-between mb-2">
-                  <Badge className="bg-primary/10 text-primary">Featured</Badge>
-                  <Badge variant="outline">{featured.category}</Badge>
-                </div>
-                <CardTitle className="text-2xl md:text-3xl font-heading">
-                  {featured.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base mb-4">
-                  {featured.excerpt}
-                </CardDescription>
-                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4">
-                  <div className="flex items-center">
-                    <User className="h-4 w-4 mr-1" />
-                    {featured.author}
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    {new Date(featured.date).toLocaleDateString()}
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="h-4 w-4 mr-1" />
-                    {featured.readTime}
-                  </div>
-                </div>
-                <Button className="group">
-                  Read More
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </CardContent>
-            </Card>
-          </Link>
-        )}
-
-        {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredBlogs.map((blog) => (
-            <Link to={`/blogs/${blog.id}`} key={blog.id}>
-              <Card className="group hover:shadow-large transition-all duration-300 cursor-pointer border-border/50 h-full flex flex-col">
-                <CardHeader className="flex-1">
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline" className="text-xs">
-                      {blog.category}
-                    </Badge>
-                    {blog.featured && (
-                      <Badge className="bg-primary/10 text-primary text-xs">
-                        Featured
-                      </Badge>
-                    )}
-                  </div>
-                  <CardTitle className="text-lg font-heading line-clamp-2">
-                    {blog.title}
-                  </CardTitle>
-                  <CardDescription className="line-clamp-3 mt-2">
-                    {blog.excerpt}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-4">
-                    <div className="flex items-center">
-                      <User className="h-3 w-3 mr-1" />
-                      {blog.author}
-                    </div>
-                    <div className="flex items-center">
-                      <Calendar className="h-3 w-3 mr-1" />
-                      {new Date(blog.date).toLocaleDateString()}
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
-                      {blog.readTime}
-                    </div>
-                  </div>
-                  <Button variant="secondary" className="w-full group">
-                    Read Article
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
-
-        {/* Newsletter CTA */}
-        <Card className="mt-12 border-primary/20 bg-gradient-soft">
-          <CardContent className="py-8 text-center">
-            <h2 className="text-2xl font-heading font-bold text-foreground mb-4">
-              Stay Informed
-            </h2>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Subscribe to our newsletter for weekly mental health tips and
-              resources delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <Button>Subscribe</Button>
+        <Card className="border-primary/20 bg-gradient-soft">
+          <CardHeader>
+            <div className="flex items-center justify-between mb-4">
+              <Badge>{blog.category}</Badge>
+              {blog.featured && (
+                <Badge className="bg-primary/10 text-primary">Featured</Badge>
+              )}
+            </div>
+            <CardTitle className="text-3xl md:text-4xl font-heading">
+              {blog.title}
+            </CardTitle>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mt-4">
+              <div className="flex items-center">
+                <User className="h-4 w-4 mr-1" />
+                {blog.author}
+              </div>
+              <div className="flex items-center">
+                <Calendar className="h-4 w-4 mr-1" />
+                {new Date(blog.date).toLocaleDateString()}
+              </div>
+              <div className="flex items-center">
+                <Clock className="h-4 w-4 mr-1" />
+                {blog.readTime}
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <CardDescription className="text-lg mb-8">
+              {blog.excerpt}
+            </CardDescription>
+            <div className="prose prose-invert max-w-none text-foreground">
+              {blog.content.split("\n\n").map((paragraph, index) => (
+                <p key={index} className="mb-4">
+                  {paragraph}
+                </p>
+              ))}
             </div>
           </CardContent>
         </Card>
@@ -432,4 +339,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default BlogDetail;

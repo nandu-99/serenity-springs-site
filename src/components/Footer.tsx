@@ -15,32 +15,46 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Your journey to mental wellness starts here. Professional therapy in a calm,
-              supportive environment.
+              Your journey to mental wellness starts here. Professional therapy
+              in a calm, supportive environment.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-heading font-semibold text-foreground mb-4">Quick Links</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">
+              Quick Links
+            </h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  to="/about"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/therapies" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  to="/therapies"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Our Therapies
                 </Link>
               </li>
               <li>
-                <Link to="/sessions" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  to="/sessions"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Book a Session
                 </Link>
               </li>
               <li>
-                <Link to="/blogs" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  to="/blogs"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Resources
                 </Link>
               </li>
@@ -49,7 +63,9 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="font-heading font-semibold text-foreground mb-4">Contact</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">
+              Contact
+            </h3>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4" />
@@ -64,7 +80,9 @@ const Footer = () => {
 
           {/* Hours */}
           <div>
-            <h3 className="font-heading font-semibold text-foreground mb-4">Members</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">
+              Members
+            </h3>
             <ul className="space-y-1 text-sm text-muted-foreground">
               <li>Vaishnavi Samala</li>
               <li>Gangotri CH</li>
@@ -79,7 +97,8 @@ const Footer = () => {
               © 2025 Serenity Springs. All rights reserved.
             </p>
             <p className="text-sm text-muted-foreground flex items-center">
-              Made with <Heart className="h-3 w-3 mx-1 text-primary" /> for your wellness
+              Made with <Heart className="h-3 w-3 mx-1 text-primary" /> for your
+              wellness
             </p>
           </div>
         </div>

@@ -1,32 +1,54 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Brain, Heart, Users, MessageCircle, Flower2, Star, Flower, Feather, Music, Palette} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ArrowRight,
+  Brain,
+  Heart,
+  Users,
+  MessageCircle,
+  Flower2,
+  Star,
+  Flower,
+  Feather,
+  Music,
+  Palette,
+} from "lucide-react";
 
 const Index = () => {
   const featuredTherapies = [
     {
       icon: Flower,
       title: "Yoga Therapy",
-      description: "One-on-one sessions using postures, breathing, and relaxation to improve physical and mental wellness.",
+      description:
+        "One-on-one sessions using postures, breathing, and relaxation to improve physical and mental wellness.",
       color: "text-primary",
     },
     {
       icon: Feather,
       title: "Spiritual Therapy",
-      description: "Guided sessions to explore inner self, purpose, and emotional-spiritual growth.",
+      description:
+        "Guided sessions to explore inner self, purpose, and emotional-spiritual growth.",
       color: "text-primary",
     },
     {
       icon: Music,
       title: "Music Therapy",
-      description: "Healing through music and rhythm to reduce stress and enhance emotional expression.",
+      description:
+        "Healing through music and rhythm to reduce stress and enhance emotional expression.",
       color: "text-primary",
     },
     {
       icon: Palette,
       title: "Arts & Crafts Therapy",
-      description: "Creative activities to express feelings, relieve stress, and boost mental well-being.",
+      description:
+        "Creative activities to express feelings, relieve stress, and boost mental well-being.",
       color: "text-primary",
     },
   ];
@@ -54,14 +76,19 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-soft">
         <div className="container mx-auto px-4 py-20 md:py-32">
-          <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
-            <Flower2 className="h-16 w-16 text-primary mx-auto mb-4" />
+          <div className="max-w-3xl mx-auto flex flex-col items-center text-center justify-center space-y-6 animate-fade-in">
+            <img
+              src="/logo.png"
+              className="h-24 w-28 flex items-center justify-center"
+            />
+            {/* <Flower2 className="h-16 w-16 text-primary mx-auto mb-4" /> */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground">
-              Find Peace at <span className="text-primary">Serenity Springs</span>
+              Find Peace at{" "}
+              <span className="text-primary">Serenity Springs</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Begin your journey to mental wellness with compassionate, professional therapy
-              tailored to your unique needs.
+              Begin your journey to mental wellness with compassionate,
+              professional therapy tailored to your unique needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link to="/therapies">
@@ -83,8 +110,8 @@ const Index = () => {
               Our Therapy Services
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              We offer a comprehensive range of therapy services designed to support your mental
-              health journey.
+              We offer a comprehensive range of therapy services designed to
+              support your mental health journey.
             </p>
           </div>
 
@@ -96,7 +123,9 @@ const Index = () => {
               >
                 <CardHeader>
                   <therapy.icon className={`h-10 w-10 ${therapy.color} mb-3`} />
-                  <CardTitle className="text-lg font-heading">{therapy.title}</CardTitle>
+                  <CardTitle className="text-lg font-heading">
+                    {therapy.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription>{therapy.description}</CardDescription>
@@ -124,8 +153,8 @@ const Index = () => {
               Why Choose Serenity Springs?
             </h2>
             <p className="text-muted-foreground">
-              We're committed to providing a safe, supportive environment where you can explore
-              your thoughts and feelings without judgment.
+              We're committed to providing a safe, supportive environment where
+              you can explore your thoughts and feelings without judgment.
             </p>
           </div>
 
@@ -134,9 +163,12 @@ const Index = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
                 <Heart className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-heading font-semibold">Compassionate Care</h3>
+              <h3 className="text-xl font-heading font-semibold">
+                Compassionate Care
+              </h3>
               <p className="text-muted-foreground">
-                Our therapists provide empathetic, non-judgmental support tailored to your needs.
+                Our therapists provide empathetic, non-judgmental support
+                tailored to your needs.
               </p>
             </div>
 
@@ -144,9 +176,12 @@ const Index = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
                 <Users className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-heading font-semibold">Expert Therapists</h3>
+              <h3 className="text-xl font-heading font-semibold">
+                Expert Therapists
+              </h3>
               <p className="text-muted-foreground">
-                Licensed professionals with years of experience in various therapeutic approaches.
+                Licensed professionals with years of experience in various
+                therapeutic approaches.
               </p>
             </div>
 
@@ -154,9 +189,12 @@ const Index = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
                 <MessageCircle className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-heading font-semibold">Flexible Options</h3>
+              <h3 className="text-xl font-heading font-semibold">
+                Flexible Options
+              </h3>
               <p className="text-muted-foreground">
-                In-person and online sessions available to fit your schedule and preferences.
+                In-person and online sessions available to fit your schedule and
+                preferences.
               </p>
             </div>
           </div>
@@ -171,7 +209,8 @@ const Index = () => {
               What Our Clients Say
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Real stories from people who have found healing and growth at Serenity Springs.
+              Real stories from people who have found healing and growth at
+              Serenity Springs.
             </p>
           </div>
 
@@ -180,16 +219,23 @@ const Index = () => {
               <Card key={index} className="border-border/50">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <span className="font-heading font-semibold">{testimonial.name}</span>
+                    <span className="font-heading font-semibold">
+                      {testimonial.name}
+                    </span>
                     <div className="flex">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                        <Star
+                          key={i}
+                          className="h-4 w-4 fill-primary text-primary"
+                        />
                       ))}
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground italic">"{testimonial.text}"</p>
+                  <p className="text-muted-foreground italic">
+                    "{testimonial.text}"
+                  </p>
                 </CardContent>
               </Card>
             ))}

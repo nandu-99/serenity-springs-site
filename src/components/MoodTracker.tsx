@@ -1,4 +1,9 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -43,13 +48,17 @@ const MoodTracker = ({ open, onOpenChange }: MoodTrackerProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-heading">Daily Mood Check-In</DialogTitle>
+          <DialogTitle className="text-xl font-heading">
+            Daily Mood Check-In
+          </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6 mt-4">
           {questions.map((question) => (
             <div key={question.id} className="space-y-3">
-              <p className="text-sm font-medium text-foreground">{question.text}</p>
+              <p className="text-sm font-medium text-foreground">
+                {question.text}
+              </p>
               <div className="flex justify-between gap-2">
                 {moods.map((mood) => (
                   <button
@@ -62,7 +71,9 @@ const MoodTracker = ({ open, onOpenChange }: MoodTrackerProps) => {
                     }`}
                   >
                     <span className="text-2xl mb-1">{mood.emoji}</span>
-                    <span className="text-xs text-muted-foreground">{mood.label}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {mood.label}
+                    </span>
                   </button>
                 ))}
               </div>

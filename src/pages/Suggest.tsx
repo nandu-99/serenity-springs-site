@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -32,7 +38,9 @@ const Suggest = () => {
     });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -56,9 +64,12 @@ const Suggest = () => {
         {/* Suggestion Form */}
         <Card className="border-border/50">
           <CardHeader>
-            <CardTitle className="text-xl font-heading">Share Your Idea</CardTitle>
+            <CardTitle className="text-xl font-heading">
+              Share Your Idea
+            </CardTitle>
             <CardDescription>
-              Your suggestions help us expand our services to better serve our community.
+              Your suggestions help us expand our services to better serve our
+              community.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -101,25 +112,37 @@ const Suggest = () => {
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="individual" id="individual" />
-                    <Label htmlFor="individual" className="font-normal cursor-pointer">
+                    <Label
+                      htmlFor="individual"
+                      className="font-normal cursor-pointer"
+                    >
                       Individual Therapy
                     </Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="group" id="group" />
-                    <Label htmlFor="group" className="font-normal cursor-pointer">
+                    <Label
+                      htmlFor="group"
+                      className="font-normal cursor-pointer"
+                    >
                       Group Therapy
                     </Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="alternative" id="alternative" />
-                    <Label htmlFor="alternative" className="font-normal cursor-pointer">
+                    <Label
+                      htmlFor="alternative"
+                      className="font-normal cursor-pointer"
+                    >
                       Alternative/Holistic Therapy
                     </Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="online" id="online" />
-                    <Label htmlFor="online" className="font-normal cursor-pointer">
+                    <Label
+                      htmlFor="online"
+                      className="font-normal cursor-pointer"
+                    >
                       Online/Digital Therapy
                     </Label>
                   </div>
@@ -182,8 +205,9 @@ const Suggest = () => {
               Your Ideas Matter
             </h3>
             <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              Every suggestion helps us create a more inclusive and comprehensive therapy program.
-              We review all submissions and may reach out to discuss your idea further.
+              Every suggestion helps us create a more inclusive and
+              comprehensive therapy program. We review all submissions and may
+              reach out to discuss your idea further.
             </p>
           </CardContent>
         </Card>

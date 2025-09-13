@@ -5,7 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Calendar, Clock, Video, MapPin, CreditCard, CheckCircle, ArrowLeft } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  Video,
+  MapPin,
+  CreditCard,
+  CheckCircle,
+  ArrowLeft,
+} from "lucide-react";
 import { toast } from "sonner";
 
 const SessionDetails = () => {
@@ -24,10 +32,12 @@ const SessionDetails = () => {
     status: "confirmed",
     paymentStatus: "unpaid",
     price: "$120",
-    description: "One-on-one therapy session focused on your personal growth and healing journey.",
+    description:
+      "One-on-one therapy session focused on your personal growth and healing journey.",
     meetingLink: "https://zoom.us/j/123456789",
     location: "123 Wellness Street, Suite 100",
-    notes: "Please prepare any topics you'd like to discuss. Remember to find a quiet, private space for our session.",
+    notes:
+      "Please prepare any topics you'd like to discuss. Remember to find a quiet, private space for our session.",
   };
 
   const handlePayment = () => {
@@ -55,12 +65,20 @@ const SessionDetails = () => {
           <CardHeader>
             <div className="flex justify-between items-start">
               <div>
-                <CardTitle className="text-2xl font-heading">{session.title}</CardTitle>
-                <p className="text-muted-foreground mt-2">with {session.therapist}</p>
+                <CardTitle className="text-2xl font-heading">
+                  {session.title}
+                </CardTitle>
+                <p className="text-muted-foreground mt-2">
+                  with {session.therapist}
+                </p>
               </div>
               <div className="flex gap-2">
                 <Badge>{session.status}</Badge>
-                <Badge variant={session.paymentStatus === "paid" ? "default" : "destructive"}>
+                <Badge
+                  variant={
+                    session.paymentStatus === "paid" ? "default" : "destructive"
+                  }
+                >
                   {session.paymentStatus === "paid" ? (
                     <>
                       <CheckCircle className="h-3 w-3 mr-1" />
@@ -96,7 +114,9 @@ const SessionDetails = () => {
                 <div className="flex items-center text-sm">
                   <Clock className="h-4 w-4 mr-2 text-primary" />
                   <span className="font-medium">Time:</span>
-                  <span className="ml-2 text-muted-foreground">{session.time}</span>
+                  <span className="ml-2 text-muted-foreground">
+                    {session.time}
+                  </span>
                 </div>
               </div>
 
@@ -106,20 +126,26 @@ const SessionDetails = () => {
                     <>
                       <Video className="h-4 w-4 mr-2 text-primary" />
                       <span className="font-medium">Type:</span>
-                      <span className="ml-2 text-muted-foreground">Video Call</span>
+                      <span className="ml-2 text-muted-foreground">
+                        Video Call
+                      </span>
                     </>
                   ) : (
                     <>
                       <MapPin className="h-4 w-4 mr-2 text-primary" />
                       <span className="font-medium">Type:</span>
-                      <span className="ml-2 text-muted-foreground">In-Person</span>
+                      <span className="ml-2 text-muted-foreground">
+                        In-Person
+                      </span>
                     </>
                   )}
                 </div>
                 <div className="flex items-center text-sm">
                   <CreditCard className="h-4 w-4 mr-2 text-primary" />
                   <span className="font-medium">Price:</span>
-                  <span className="ml-2 text-foreground font-semibold">{session.price}</span>
+                  <span className="ml-2 text-foreground font-semibold">
+                    {session.price}
+                  </span>
                 </div>
               </div>
             </div>
@@ -148,7 +174,9 @@ const SessionDetails = () => {
             {session.type === "in-person" && session.location && (
               <div className="bg-primary/5 rounded-lg p-4">
                 <p className="text-sm font-medium mb-1">Location:</p>
-                <p className="text-sm text-muted-foreground">{session.location}</p>
+                <p className="text-sm text-muted-foreground">
+                  {session.location}
+                </p>
               </div>
             )}
           </CardContent>
@@ -158,23 +186,32 @@ const SessionDetails = () => {
         {session.paymentStatus === "unpaid" && (
           <Card className="border-border/50">
             <CardHeader>
-              <CardTitle className="text-xl font-heading">Payment Details</CardTitle>
+              <CardTitle className="text-xl font-heading">
+                Payment Details
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
                 <span className="font-medium">Session Fee:</span>
-                <span className="text-2xl font-bold text-primary">{session.price}</span>
+                <span className="text-2xl font-bold text-primary">
+                  {session.price}
+                </span>
               </div>
 
               <div className="space-y-4">
                 <Label className="text-base">Select Payment Method</Label>
-                <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
+                <RadioGroup
+                  value={paymentMethod}
+                  onValueChange={setPaymentMethod}
+                >
                   <div className="flex items-center space-x-2 p-3 rounded-lg border hover:bg-muted/30 transition-colors">
                     <RadioGroupItem value="card" id="card" />
                     <Label htmlFor="card" className="flex-1 cursor-pointer">
                       <div className="flex items-center justify-between">
                         <span>Credit/Debit Card</span>
-                        <span className="text-xs text-muted-foreground">Visa, Mastercard, Amex</span>
+                        <span className="text-xs text-muted-foreground">
+                          Visa, Mastercard, Amex
+                        </span>
                       </div>
                     </Label>
                   </div>
@@ -183,7 +220,9 @@ const SessionDetails = () => {
                     <Label htmlFor="upi" className="flex-1 cursor-pointer">
                       <div className="flex items-center justify-between">
                         <span>UPI</span>
-                        <span className="text-xs text-muted-foreground">Google Pay, PhonePe, Paytm</span>
+                        <span className="text-xs text-muted-foreground">
+                          Google Pay, PhonePe, Paytm
+                        </span>
                       </div>
                     </Label>
                   </div>
@@ -192,24 +231,23 @@ const SessionDetails = () => {
                     <Label htmlFor="paypal" className="flex-1 cursor-pointer">
                       <div className="flex items-center justify-between">
                         <span>PayPal</span>
-                        <span className="text-xs text-muted-foreground">Secure payment</span>
+                        <span className="text-xs text-muted-foreground">
+                          Secure payment
+                        </span>
                       </div>
                     </Label>
                   </div>
                 </RadioGroup>
               </div>
 
-              <Button
-                onClick={handlePayment}
-                className="w-full"
-                size="lg"
-              >
+              <Button onClick={handlePayment} className="w-full" size="lg">
                 <CreditCard className="h-4 w-4 mr-2" />
                 Pay Now {session.price}
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">
-                Your payment information is secure and encrypted. You can cancel up to 24 hours before your session.
+                Your payment information is secure and encrypted. You can cancel
+                up to 24 hours before your session.
               </p>
             </CardContent>
           </Card>
@@ -222,7 +260,8 @@ const SessionDetails = () => {
               <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
               <p className="font-medium text-lg mb-2">Payment Complete</p>
               <p className="text-sm text-muted-foreground">
-                Your session is confirmed and paid. We'll see you on {new Date(session.date).toLocaleDateString()}.
+                Your session is confirmed and paid. We'll see you on{" "}
+                {new Date(session.date).toLocaleDateString()}.
               </p>
             </CardContent>
           </Card>

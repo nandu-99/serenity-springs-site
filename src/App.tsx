@@ -15,6 +15,9 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import BlogDetail from "./pages/BlogDetails";
+import ScrollToTop from "./pages/ScrollToTop";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient();
 
@@ -32,22 +35,109 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {/* Auth Routes (no layout) */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          
+          <Route
+            path="/login"
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Layout>
+                <Register />
+              </Layout>
+            }
+          />
+
           {/* Main Routes (with layout) */}
-          <Route path="/" element={<Layout><Index /></Layout>} />
-          <Route path="/about" element={<Layout><About /></Layout>} />
-          <Route path="/therapies" element={<Layout><Therapies /></Layout>} />
-          <Route path="/sessions" element={<Layout><Sessions /></Layout>} />
-          <Route path="/session/:id" element={<Layout><SessionDetails /></Layout>} />
-          <Route path="/suggest" element={<Layout><Suggest /></Layout>} />
-          <Route path="/blogs" element={<Layout><Blogs /></Layout>} />
-          
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <Index />
+              </Layout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Layout>
+                <About />
+              </Layout>
+            }
+          />
+          <Route
+            path="/therapies"
+            element={
+              <Layout>
+                <Therapies />
+              </Layout>
+            }
+          />
+          <Route
+            path="/sessions"
+            element={
+              <Layout>
+                <Sessions />
+              </Layout>
+            }
+          />
+          <Route
+            path="/session/:id"
+            element={
+              <Layout>
+                <SessionDetails />
+              </Layout>
+            }
+          />
+          <Route
+            path="/suggest"
+            element={
+              <Layout>
+                <Suggest />
+              </Layout>
+            }
+          />
+          <Route
+            path="/blogs"
+            element={
+              <Layout>
+                <Blogs />
+              </Layout>
+            }
+          />
+          <Route
+            path="/blogs/:id"
+            element={
+              <Layout>
+                <BlogDetail />
+              </Layout>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <Layout>
+                <Dashboard />
+              </Layout>
+            }
+          />
+
           {/* 404 Route */}
-          <Route path="*" element={<Layout><NotFound /></Layout>} />
+          <Route
+            path="*"
+            element={
+              <Layout>
+                <NotFound />
+              </Layout>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

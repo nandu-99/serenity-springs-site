@@ -1,10 +1,22 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Sparkles, Mail, Lock } from "lucide-react";
 import { toast } from "sonner";
 
@@ -13,41 +25,67 @@ const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    rememberMe: false,
+    role: "user",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Login successful! Welcome back.");
-    setTimeout(() => {
-      navigate("/");
-    }, 1500);
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Login failed");
+      }
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("fullName", data.fullName);
+      localStorage.setItem("role", formData.role);
+      toast.success("Login successful! Welcome back.");
+      setTimeout(() => {
+        navigate("/");
+        navigate(0);
+      }, 1500);
+    } catch (error) {
+      toast.error("Login failed. Please check your credentials.");
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
   return (
     <div className="min-h-screen bg-gradient-soft flex items-center justify-center py-12 px-4">
       <div className="w-full max-w-md">
-        {/* Logo */}
-        <Link to="/" className="flex items-center justify-center space-x-2 mb-8">
+        <Link
+          to="/"
+          className="flex items-center justify-center space-x-2 mb-8"
+        >
           <Sparkles className="h-8 w-8 text-primary" />
           <span className="font-heading font-bold text-2xl text-foreground">
             Serenity Springs
           </span>
         </Link>
-
-        {/* Login Card */}
         <Card className="border-border/50 shadow-large">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-heading">Welcome Back</CardTitle>
-            <CardDescription>Sign in to continue your wellness journey</CardDescription>
+            <CardTitle className="text-2xl font-heading">
+              Welcome Back
+            </CardTitle>
+            <CardDescription>
+              Sign in to continue your wellness journey
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -67,7 +105,6 @@ const Login = () => {
                   />
                 </div>
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <div className="relative">
@@ -84,57 +121,35 @@ const Login = () => {
                   />
                 </div>
               </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="rememberMe"
-                    checked={formData.rememberMe}
-                    onCheckedChange={(checked) =>
-                      setFormData((prev) => ({ ...prev, rememberMe: checked as boolean }))
-                    }
-                  />
-                  <Label
-                    htmlFor="rememberMe"
-                    className="text-sm font-normal cursor-pointer"
-                  >
-                    Remember me
-                  </Label>
-                </div>
-                <Link
-                  to="/forgot-password"
-                  className="text-sm text-primary hover:underline"
+              <div className="space-y-2">
+                <Label htmlFor="role">Role</Label>
+                <Select
+                  name="role"
+                  value={formData.role}
+                  onValueChange={(value) =>
+                    setFormData((prev) => ({ ...prev, role: value }))
+                  }
                 >
-                  Forgot password?
-                </Link>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="user">User</SelectItem>
+                    <SelectItem value="therapist">Therapist</SelectItem>
+                    <SelectItem value="admin">Admin</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-
               <Button type="submit" className="w-full" size="lg">
                 Sign In
               </Button>
             </form>
-
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-border"></div>
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <Button variant="outline" type="button">
-                Google
-              </Button>
-              <Button variant="outline" type="button">
-                Facebook
-              </Button>
-            </div>
-
             <p className="text-center text-sm text-muted-foreground mt-6">
               Don't have an account?{" "}
-              <Link to="/register" className="text-primary hover:underline font-medium">
+              <Link
+                to="/register"
+                className="text-primary hover:underline font-medium"
+              >
                 Sign up
               </Link>
             </p>

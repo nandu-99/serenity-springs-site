@@ -1,6 +1,20 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Brain, Users, Heart, MessageCircle, User2, Flower2, Sparkles, Calendar, Activity, Star, Music, Paintbrush } from "lucide-react";
+import {
+  Brain,
+  Users,
+  Activity,
+  Star,
+  Music,
+  Paintbrush,
+  Calendar,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Therapies = () => {
@@ -8,16 +22,22 @@ const Therapies = () => {
     {
       icon: Brain,
       title: "Individual Therapy",
-      description: "One-on-one sessions tailored to your personal needs and goals.",
+      description:
+        "One-on-one sessions tailored to your personal needs and goals.",
       duration: "50 minutes",
       price: "$120",
-      features: ["Personalized treatment plan", "Weekly or bi-weekly sessions", "Homework exercises"],
+      features: [
+        "Personalized treatment plan",
+        "Weekly or bi-weekly sessions",
+        "Homework exercises",
+      ],
       color: "bg-primary/10 text-primary",
     },
     {
       icon: Users,
       title: "Group Therapy",
-      description: "Connect and heal with others who share similar experiences.",
+      description:
+        "Connect and heal with others who share similar experiences.",
       duration: "90 minutes",
       price: "$60",
       features: ["Peer support", "Shared experiences", "Group activities"],
@@ -26,37 +46,57 @@ const Therapies = () => {
     {
       icon: Activity,
       title: "Yoga Therapy",
-      description: "Sessions using postures, breathing, and relaxation to enhance well-being.",
+      description:
+        "Sessions using postures, breathing, and relaxation to enhance well-being.",
       duration: "60 minutes",
       price: "$80",
-      features: ["Customized yoga poses", "Breathing exercises", "Relaxation techniques"],
+      features: [
+        "Customized yoga poses",
+        "Breathing exercises",
+        "Relaxation techniques",
+      ],
       color: "bg-primary/10 text-primary",
     },
     {
       icon: Star,
       title: "Spiritual Therapy",
-      description: "Guided sessions to explore inner self, purpose, and emotional growth.",
+      description:
+        "Guided sessions to explore inner self, purpose, and emotional growth.",
       duration: "60 minutes",
       price: "$100",
-      features: ["Meditation practices", "Inner exploration", "Emotional guidance"],
+      features: [
+        "Meditation practices",
+        "Inner exploration",
+        "Emotional guidance",
+      ],
       color: "bg-primary/10 text-primary",
     },
     {
       icon: Music,
       title: "Music Therapy",
-      description: "Healing through music and rhythm to reduce stress and improve mood.",
+      description:
+        "Healing through music and rhythm to reduce stress and improve mood.",
       duration: "50 minutes",
       price: "$90",
-      features: ["Instrumental exercises", "Listening therapy", "Mood enhancement"],
+      features: [
+        "Instrumental exercises",
+        "Listening therapy",
+        "Mood enhancement",
+      ],
       color: "bg-primary/10 text-primary",
     },
     {
       icon: Paintbrush,
       title: "Arts & Crafts Therapy",
-      description: "Creative sessions using art and craft to relieve stress and express feelings.",
+      description:
+        "Creative sessions using art and craft to relieve stress and express feelings.",
       duration: "60 minutes",
       price: "$85",
-      features: ["Drawing & painting", "Craft activities", "Emotional expression"],
+      features: [
+        "Drawing & painting",
+        "Craft activities",
+        "Emotional expression",
+      ],
       color: "bg-primary/10 text-primary",
     },
   ];
@@ -64,18 +104,21 @@ const Therapies = () => {
   return (
     <div className="min-h-screen bg-background py-12">
       <div className="container mx-auto px-4">
-        {/* Header */}
+        <div className="mb-6 flex justify-start">
+          <Link to="/">
+            <Button variant="outline">← Back to Home</Button>
+          </Link>
+        </div>
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
             Explore Our Therapies
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Discover the therapy approach that resonates with you. We offer various modalities to
-            support your unique healing journey.
+            Discover the therapy approach that resonates with you. We offer
+            various modalities to support your unique healing journey.
           </p>
         </div>
 
-        {/* Therapy Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {therapies.map((therapy, index) => (
             <Card
@@ -83,20 +126,28 @@ const Therapies = () => {
               className="group hover:shadow-large transition-all duration-300 border-border/50"
             >
               <CardHeader>
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${therapy.color} mb-3`}>
+                <div
+                  className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${therapy.color} mb-3`}
+                >
                   <therapy.icon className="h-6 w-6" />
                 </div>
-                <CardTitle className="text-xl font-heading">{therapy.title}</CardTitle>
-                <CardDescription className="text-sm">{therapy.description}</CardDescription>
+                <CardTitle className="text-xl font-heading">
+                  {therapy.title}
+                </CardTitle>
+                <CardDescription className="text-sm">
+                  {therapy.description}
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex justify-between items-center text-sm">
+                {/* <div className="flex justify-between items-center text-sm">
                   <div className="flex items-center text-muted-foreground">
                     <Calendar className="h-4 w-4 mr-1" />
                     <span>{therapy.duration}</span>
                   </div>
-                  <span className="font-semibold text-primary text-lg">{therapy.price}</span>
-                </div>
+                  <span className="font-semibold text-primary text-lg">
+                    {therapy.price}
+                  </span>
+                </div> */}
 
                 <div className="space-y-2">
                   <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
@@ -104,7 +155,10 @@ const Therapies = () => {
                   </p>
                   <ul className="space-y-1">
                     {therapy.features.map((feature, idx) => (
-                      <li key={idx} className="text-sm text-muted-foreground flex items-start">
+                      <li
+                        key={idx}
+                        className="text-sm text-muted-foreground flex items-start"
+                      >
                         <span className="text-primary mr-2">•</span>
                         {feature}
                       </li>
@@ -112,30 +166,14 @@ const Therapies = () => {
                   </ul>
                 </div>
 
-                <Link to="/sessions">
+                <Link to={`/sessions?therapy=${therapy.title}`}>
                   <Button className="w-full group-hover:shadow-medium transition-all mt-5">
-                    Book Session
+                    View Sessions
                   </Button>
                 </Link>
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 text-center bg-gradient-soft rounded-2xl p-8">
-          <h2 className="text-2xl font-heading font-bold text-foreground mb-4">
-            Not sure which therapy is right for you?
-          </h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Schedule a free consultation to discuss your needs and find the perfect therapeutic
-            approach for your journey.
-          </p>
-          <Link to="/sessions">
-            <Button size="lg" className="shadow-medium">
-              Schedule Free Consultation
-            </Button>
-          </Link>
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ All colors MUST be HSL.
     --primary: 175 50% 40%;
     --primary-foreground: 0 0% 100%;
     --primary-hover: 175 55% 35%;
-    
+
     /* Secondary - Soft gray */
     --secondary: 210 10% 96%;
     --secondary-foreground: 200 10% 25%;
@@ -48,18 +48,25 @@ All colors MUST be HSL.
 
     /* Border radius */
     --radius: 0.75rem;
-    
+
     /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(175 50% 40%), hsl(175 45% 50%));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(175 50% 40%),
+      hsl(175 45% 50%)
+    );
     --gradient-soft: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 20% 98%));
-    --shadow-soft: 0 4px 6px -1px hsl(0 0% 0% / 0.05), 0 2px 4px -1px hsl(0 0% 0% / 0.03);
-    --shadow-medium: 0 10px 15px -3px hsl(0 0% 0% / 0.08), 0 4px 6px -2px hsl(0 0% 0% / 0.04);
-    --shadow-large: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 10px 10px -5px hsl(0 0% 0% / 0.04);
-    
+    --shadow-soft:
+      0 4px 6px -1px hsl(0 0% 0% / 0.05), 0 2px 4px -1px hsl(0 0% 0% / 0.03);
+    --shadow-medium:
+      0 10px 15px -3px hsl(0 0% 0% / 0.08), 0 4px 6px -2px hsl(0 0% 0% / 0.04);
+    --shadow-large:
+      0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 10px 10px -5px hsl(0 0% 0% / 0.04);
+
     /* Typography */
-    --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-    
+    --font-heading: "Inter", system-ui, -apple-system, sans-serif;
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.15s ease-in-out;
