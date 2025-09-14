@@ -54,6 +54,7 @@ const Register = () => {
       const data = await response.json();
       localStorage.setItem("token", data.token);
       localStorage.setItem("fullName", data.fullName);
+      localStorage.setItem("role", formData.role);
       toast.success("Signup successful! Welcome to Serenity Springs.");
       setTimeout(() => {
         navigate("/");

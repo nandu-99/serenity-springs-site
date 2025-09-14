@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import {
   CreditCard,
   CheckCircle,
   ArrowLeft,
+  Loader2,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -20,37 +21,115 @@ const SessionDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState("card");
+  const [session, setSession] = useState(null);
+  const [isPaying, setIsPaying] = useState(false);
 
-  // Mock session data
-  const session = {
-    id: id,
-    title: "Individual Therapy Session",
-    therapist: "Dr. Sarah Thompson",
-    date: "2025-01-15",
-    time: "2:00 PM - 2:50 PM",
-    type: "video",
-    status: "confirmed",
-    paymentStatus: "unpaid",
-    price: "$120",
-    description:
-      "One-on-one therapy session focused on your personal growth and healing journey.",
-    meetingLink: "https://zoom.us/j/123456789",
-    location: "123 Wellness Street, Suite 100",
-    notes:
-      "Please prepare any topics you'd like to discuss. Remember to find a quiet, private space for our session.",
+  useEffect(() => {
+    const fetchSessionData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.error("No token found in localStorage");
+          return;
+        }
+
+        const response = await fetch(`http://localhost:3000/therapy/${id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data, "data");
+
+        const startDate = new Date(data.scheduledAt);
+        const endDate = new Date(
+          startDate.getTime() + (data.duration || 60) * 60000,
+        );
+        const randomMeetingId = Math.floor(
+          100000000 + Math.random() * 900000000,
+        );
+
+        const mappedSession = {
+          id: data.id,
+          title: data.title,
+          therapist: data.therapist?.fullName || data.therapist?.email,
+          date: data.scheduledAt ? data.scheduledAt.split("T")[0] : null,
+          time: `${startDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })} - ${endDate.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`,
+          type: data.type?.includes("GROUP") ? "in-person" : "video",
+          status: startDate > new Date() ? "confirmed" : "completed",
+          paymentStatus: data.booked ? "paid" : "unpaid",
+          price: data.cost ? `$${data.cost}` : "$100",
+          description: data.description || "",
+          meetingLink: data.type?.includes("GROUP")
+            ? null
+            : `https://zoom.us/j/${randomMeetingId}`,
+          location: data.type?.includes("GROUP")
+            ? "123 Wellness Street, Suite 100"
+            : null,
+          notes:
+            "Please prepare any topics you'd like to discuss. Remember to find a quiet, private space for our session.",
+        };
+
+        console.log(mappedSession);
+        setSession(mappedSession);
+      } catch (error) {
+        console.error("Error fetching session data:", error);
+      }
+    };
+
+    fetchSessionData();
+  }, [id]);
+
+  const handlePayment = async () => {
+    setIsPaying(true);
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in localStorage");
+      }
+
+      // Make the API call to join the therapy session
+      const response = await fetch(`http://localhost:3000/therapy/${id}/join`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Update the session state and show success toast
+      setSession({ ...session, paymentStatus: "paid" });
+      toast.success("Payment processed successfully!");
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      toast.error("Failed to process payment. Please try again.");
+    } finally {
+      setIsPaying(false);
+    }
   };
 
-  const handlePayment = () => {
-    toast.success("Payment processed successfully!");
-    setTimeout(() => {
-      navigate("/sessions");
-    }, 2000);
-  };
+  if (!session) {
+    return (
+      <div className="min-h-screen bg-background py-12 flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background py-12">
       <div className="container mx-auto px-4 max-w-4xl">
-        {/* Back Button */}
         <Button
           variant="ghost"
           onClick={() => navigate("/sessions")}
@@ -60,7 +139,6 @@ const SessionDetails = () => {
           Back to Sessions
         </Button>
 
-        {/* Session Details Card */}
         <Card className="mb-6 border-border/50">
           <CardHeader>
             <div className="flex justify-between items-start">
@@ -182,7 +260,6 @@ const SessionDetails = () => {
           </CardContent>
         </Card>
 
-        {/* Payment Section */}
         {session.paymentStatus === "unpaid" && (
           <Card className="border-border/50">
             <CardHeader>
@@ -240,9 +317,23 @@ const SessionDetails = () => {
                 </RadioGroup>
               </div>
 
-              <Button onClick={handlePayment} className="w-full" size="lg">
-                <CreditCard className="h-4 w-4 mr-2" />
-                Pay Now {session.price}
+              <Button
+                onClick={handlePayment}
+                className="w-full"
+                size="lg"
+                disabled={isPaying}
+              >
+                {isPaying ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    <CreditCard className="h-4 w-4 mr-2" />
+                    Pay Now {session.price}
+                  </>
+                )}
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">
@@ -253,7 +344,6 @@ const SessionDetails = () => {
           </Card>
         )}
 
-        {/* Already Paid Message */}
         {session.paymentStatus === "paid" && (
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="py-6 text-center">
