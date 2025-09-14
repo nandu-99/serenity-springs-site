@@ -6,20 +6,23 @@ const About = () => {
     {
       name: "Vaishnavi Samala",
       title: "UI/UX Designer",
+      image: "/vaishu.jpeg",
       description:
-        "Sarah crafted the intuitive and calming user experience, ensuring Serenity Springs feels welcoming and easy to navigate.",
+        "Vaishnavi crafted the intuitive and calming user experience, ensuring Serenity Springs feels welcoming and easy to navigate.",
     },
     {
       name: "Gangotri Choudekar",
       title: "Front-End Developer",
+      image: "/Gangotri.jpg",
       description:
-        "Maya brought the website to life with seamless functionality and responsive design, creating a fluid experience across devices.",
+        "Gangotri brought the website to life with seamless functionality and responsive design, creating a fluid experience across devices.",
     },
     {
       name: "Chandana Kuthadi",
       title: "Back-End Developer",
+      image: "/chandana.jpeg",
       description:
-        "James built the secure and scalable infrastructure, ensuring encrypted logins and smooth performance for all users.",
+        "Chandana built the secure and scalable infrastructure, ensuring encrypted logins and smooth performance for all users.",
     },
   ];
 
@@ -107,7 +110,11 @@ const About = () => {
                 <CardContent className="p-6">
                   <div className="bg-gradient-soft p-4 flex items-center justify-center mb-4">
                     <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Heart className="h-12 w-12 text-primary" />
+                      {/* <Heart className="h-12 w-12 text-primary" /> */}
+                      <img
+              src={member.image}
+              className="flex items-center justify-center"
+            />
                     </div>
                   </div>
                   <h4 className="text-lg font-heading font-bold text-foreground mb-1">
