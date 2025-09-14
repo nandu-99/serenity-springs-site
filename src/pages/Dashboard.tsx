@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 
 const TherapyDetailsModal = ({ isOpen, onClose, therapy, therapist }) => {
   if (!isOpen || !therapy) return null;
+  const randomMeetingId = Math.floor(
+    100000000 + Math.random() * 900000000,
+  );
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -55,6 +58,16 @@ const TherapyDetailsModal = ({ isOpen, onClose, therapy, therapist }) => {
             <p className="text-muted-foreground">
               {therapy.cost ? `$${therapy.cost}` : "N/A"}
             </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="block text-md font-medium text-foreground">
+              Meeting Link:{" "}
+            </label>
+            <a href={therapy.meetingLink ? `${therapy.meetingLink}` :  `https://zoom.us/j/${randomMeetingId}`} className="text-sm text-primary hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer">
+              {therapy.meetingLink ? `${therapy.meetingLink}` :  `https://zoom.us/j/${randomMeetingId}`}
+            </a>
           </div>
           <div className="flex items-center gap-2">
             <label className="block text-md font-medium text-foreground">

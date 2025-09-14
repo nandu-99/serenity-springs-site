@@ -77,7 +77,6 @@ const Sessions = () => {
               ? null
               : session.description
                   .split("\n")
-                  .filter((line) => !line.startsWith("FEATURES:"))
                   .join(" "),
           };
 

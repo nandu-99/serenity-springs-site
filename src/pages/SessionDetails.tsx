@@ -67,8 +67,8 @@ const SessionDetails = () => {
           paymentStatus: data.booked ? "paid" : "unpaid",
           price: data.cost ? `$${data.cost}` : "$100",
           description: data.description || "",
-          meetingLink: data.type?.includes("GROUP")
-            ? null
+          meetingLink: data.meetingLink
+            ? data.meetingLink
             : `https://zoom.us/j/${randomMeetingId}`,
           location: data.type?.includes("GROUP")
             ? "123 Wellness Street, Suite 100"
@@ -96,7 +96,7 @@ const SessionDetails = () => {
         throw new Error("No token found in localStorage");
       }
 
-      const response = await fetch(`https://serenity-backend-beige.vercel.app/therapy/${id}/join`, {
+      const response = await fetch(`http://localhost:3000/therapy/${id}/join`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
