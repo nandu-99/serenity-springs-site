@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import {
-  Calendar,
-  Clock,
-  User,
-  CheckCircle,
-  XCircle,
-  PlusCircle,
+    Calendar,
+    CheckCircle,
+    Clock,
+    PlusCircle,
+    User,
+    XCircle,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const TherapyDetailsModal = ({ isOpen, onClose, therapy, therapist }) => {
   if (!isOpen || !therapy) return null;
@@ -602,7 +602,7 @@ const Dashboard = () => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    const res = await fetch("http://localhost:3000/user", {
+    const res = await fetch("https://serenity-backend-beige.vercel.app/user", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -628,7 +628,7 @@ const Dashboard = () => {
 
   const handleApprove = async (id) => {
     const token = localStorage.getItem("token");
-    await fetch(`http://localhost:3000/admin/therapists/${id}/approve`, {
+    await fetch(`https://serenity-backend-beige.vercel.app/admin/therapists/${id}/approve`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -641,7 +641,7 @@ const Dashboard = () => {
 
   const handleReject = async (id) => {
     const token = localStorage.getItem("token");
-    await fetch(`http://localhost:3000/admin/therapists/${id}/reject`, {
+    await fetch(`https://serenity-backend-beige.vercel.app/admin/therapists/${id}/reject`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -654,7 +654,7 @@ const Dashboard = () => {
 
   const handleSchedule = async (data) => {
     const token = localStorage.getItem("token");
-    await fetch("http://localhost:3000/therapy", {
+    await fetch("https://serenity-backend-beige.vercel.app/therapy", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -690,7 +690,7 @@ const Dashboard = () => {
     }
 
     const res = await fetch(
-      "http://localhost:3000/therapist/request-approval",
+      "https://serenity-backend-beige.vercel.app/therapist/request-approval",
       {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },

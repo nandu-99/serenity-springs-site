@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
-  Calendar,
-  Clock,
-  Video,
-  MapPin,
-  CreditCard,
-  CheckCircle,
   ArrowLeft,
+  Calendar,
+  CheckCircle,
+  Clock,
+  CreditCard,
   Loader2,
+  MapPin,
+  Video,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 const SessionDetails = () => {
@@ -33,7 +33,7 @@ const SessionDetails = () => {
           return;
         }
 
-        const response = await fetch(`http://localhost:3000/therapy/${id}`, {
+        const response = await fetch(`https://serenity-backend-beige.vercel.app/therapy/${id}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -96,7 +96,7 @@ const SessionDetails = () => {
       }
 
       // Make the API call to join the therapy session
-      const response = await fetch(`http://localhost:3000/therapy/${id}/join`, {
+      const response = await fetch(`https://serenity-backend-beige.vercel.app/therapy/${id}/join`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

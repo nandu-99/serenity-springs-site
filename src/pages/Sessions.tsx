@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Calendar,
-  Clock,
-  Video,
-  MapPin,
-  CreditCard,
   CheckCircle,
+  Clock,
+  CreditCard,
+  MapPin,
+  Video,
 } from "lucide-react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Sessions = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const Sessions = () => {
           return;
         }
 
-        const response = await fetch("http://localhost:3000/therapy", {
+        const response = await fetch("https://serenity-backend-beige.vercel.app/therapy", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

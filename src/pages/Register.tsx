@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -17,7 +15,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Sparkles, Mail, Lock, User } from "lucide-react";
+import { Lock, Mail, Sparkles, User } from "lucide-react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Register = () => {
@@ -36,7 +36,7 @@ const Register = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:3000/auth/signup", {
+      const response = await fetch("https://serenity-backend-beige.vercel.app/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
