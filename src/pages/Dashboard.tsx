@@ -169,8 +169,9 @@ const TherapistDetailsModal = ({ isOpen, onClose, therapist }) => {
             <p className="text-muted-foreground">
               {therapist.therapistDetails?.documentPath ? (
                 <Link
-                  to={`http://localhost:3000/${therapist.therapistDetails.documentPath}`}
+                  to={`${therapist.therapistDetails.documentPath}`}
                   className="text-primary hover:underline"
+                  target="_blank"
                 >
                   View Document
                 </Link>
@@ -810,9 +811,10 @@ const Dashboard = () => {
                                 <td className="px-6 py-4">{`${therapist.therapistDetails?.bio}, ${therapist.therapistDetails?.experienceYears} years experience`}</td>
                                 <td className="px-6 py-4">
                                   <Link
-                                    to={`http://localhost:3000/${therapist.therapistDetails?.documentPath}`}
+                                    to={`${therapist.therapistDetails?.documentPath}`}
                                     className="text-primary hover:underline"
                                     onClick={(e) => e.stopPropagation()}
+                                    target="_blank"
                                   >
                                     {therapist.therapistDetails?.documentPath}
                                   </Link>
