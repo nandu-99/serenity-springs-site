@@ -23,13 +23,14 @@ const SessionDetails = () => {
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [session, setSession] = useState(null);
   const [isPaying, setIsPaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchSessionData = async () => {
+      setIsLoading(true);
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          console.error("No token found in localStorage");
           return;
         }
 
@@ -46,7 +47,6 @@ const SessionDetails = () => {
         }
 
         const data = await response.json();
-        console.log(data, "data");
 
         const startDate = new Date(data.scheduledAt);
         const endDate = new Date(
@@ -77,10 +77,11 @@ const SessionDetails = () => {
             "Please prepare any topics you'd like to discuss. Remember to find a quiet, private space for our session.",
         };
 
-        console.log(mappedSession);
         setSession(mappedSession);
       } catch (error) {
         console.error("Error fetching session data:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -95,7 +96,6 @@ const SessionDetails = () => {
         throw new Error("No token found in localStorage");
       }
 
-      // Make the API call to join the therapy session
       const response = await fetch(`https://serenity-backend-beige.vercel.app/therapy/${id}/join`, {
         method: "POST",
         headers: {
@@ -108,7 +108,6 @@ const SessionDetails = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      // Update the session state and show success toast
       setSession({ ...session, paymentStatus: "paid" });
       toast.success("Payment processed successfully!");
     } catch (error) {
@@ -119,10 +118,17 @@ const SessionDetails = () => {
     }
   };
 
-  if (!session) {
+  if (!session || isLoading) {
     return (
       <div className="min-h-screen bg-background py-12 flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <Card className="border-border/50">
+          <CardContent className="text-center py-12">
+            <div className="flex justify-center items-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            </div>
+            <p className="text-muted-foreground mt-4">Loading session...</p>
+          </CardContent>
+        </Card>
       </div>
     );
   }

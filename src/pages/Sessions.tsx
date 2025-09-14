@@ -18,16 +18,17 @@ const Sessions = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("upcoming");
   const [sessionsData, setSessionsData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const query = new URLSearchParams(location.search);
   const selectedTherapy = query.get("therapy");
 
   useEffect(() => {
     const fetchTherapyData = async () => {
+      setIsLoading(true);
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          console.error("No token found in localStorage");
           return;
         }
 
@@ -51,7 +52,6 @@ const Sessions = () => {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
           const isUpcoming = new Date(session.scheduledAt) > new Date();
-          console.log(session, "SESSION");
 
           const sessionObj = {
             id: session.id,
@@ -107,6 +107,8 @@ const Sessions = () => {
         setSessionsData(filteredData);
       } catch (error) {
         console.error("Error fetching therapy data:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -156,7 +158,16 @@ const Sessions = () => {
             <Button variant="outline">← Back to Therapies</Button>
           </Link>
         </div>
-        {sessionsData.length > 0 ? (
+        {isLoading ? (
+          <Card className="border-border/50">
+            <CardContent className="text-center py-12">
+              <div className="flex justify-center items-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+              </div>
+              <p className="text-muted-foreground mt-4">Loading sessions...</p>
+            </CardContent>
+          </Card>
+        ) : sessionsData.length > 0 ? (
           sessionsData.map((therapyData, index) => (
             <div key={index} className="mb-12">
               <div className="text-center mb-12 animate-fade-in">

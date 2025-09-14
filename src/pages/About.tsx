@@ -10,7 +10,7 @@ const About = () => {
         "Sarah crafted the intuitive and calming user experience, ensuring Serenity Springs feels welcoming and easy to navigate.",
     },
     {
-      name: "Gangotri CH",
+      name: "Gangotri Choudekar",
       title: "Front-End Developer",
       description:
         "Maya brought the website to life with seamless functionality and responsive design, creating a fluid experience across devices.",

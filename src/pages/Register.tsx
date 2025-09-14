@@ -28,6 +28,7 @@ const Register = () => {
     fullName: "",
     role: "user",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ const Register = () => {
       toast.error("Admin registration is not allowed.");
       return;
     }
+    setIsLoading(true)
     try {
       const response = await fetch("https://serenity-backend-beige.vercel.app/auth/signup", {
         method: "POST",
@@ -62,6 +64,8 @@ const Register = () => {
       }, 1500);
     } catch (error) {
       toast.error("Signup failed. Please try again.");
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -72,6 +76,21 @@ const Register = () => {
       [name]: value,
     }));
   };
+
+  if(isLoading){
+    return (
+      <div className="min-h-screen bg-background py-12 flex items-center justify-center">
+      <Card className="border-border/50">
+        <CardContent className="text-center py-12">
+          <div className="flex justify-center items-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+          </div>
+          <p className="text-muted-foreground mt-4">Please wait...</p>
+        </CardContent>
+      </Card>
+    </div>
+  )
+  }
 
   return (
     <div className="min-h-screen bg-gradient-soft flex items-center justify-center py-12 px-4">

@@ -85,7 +85,7 @@ const Footer = () => {
             </h3>
             <ul className="space-y-1 text-sm text-muted-foreground">
               <li>Vaishnavi Samala</li>
-              <li>Gangotri CH</li>
+              <li>Gangotri Choudekar</li>
               <li>Chandana Kuthadi</li>
             </ul>
           </div>

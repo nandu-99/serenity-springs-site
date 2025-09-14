@@ -1,3 +1,4 @@
+import { Card, CardContent } from "@/components/ui/card";
 import {
     Calendar,
     CheckCircle,
@@ -119,7 +120,6 @@ const TherapyDetailsModal = ({ isOpen, onClose, therapy, therapist }) => {
 };
 
 const TherapistDetailsModal = ({ isOpen, onClose, therapist }) => {
-  console.log(1);
   if (!isOpen || !therapist) return null;
 
   return (
@@ -564,6 +564,7 @@ const ScheduleTherapyModal: React.FC<{
 
 const Dashboard = () => {
   const [role, setRole] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [mainTab, setMainTab] = useState("pending");
   const [therapyTab, setTherapyTab] = useState("upcoming");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -573,7 +574,6 @@ const Dashboard = () => {
   const [approved, setApproved] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedTherapist, setSelectedTherapist] = useState(null);
-  console.log(selectedTherapist, "asdf");
   const [approvalFormData, setApprovalFormData] = useState({
     firstName: "",
     lastName: "",
@@ -599,6 +599,7 @@ const Dashboard = () => {
   }, [role]);
 
   const fetchData = async () => {
+    setIsLoading(true)
     const token = localStorage.getItem("token");
     if (!token) return;
 
@@ -624,6 +625,7 @@ const Dashboard = () => {
     } else if (role === "user") {
       setTherapies(data.therapies);
     }
+    setIsLoading(false)
   };
 
   const handleApprove = async (id) => {
@@ -701,6 +703,21 @@ const Dashboard = () => {
       setIsSubmitted(true);
     }
   };
+
+  if(isLoading){
+    return (
+        <div className="min-h-screen bg-background py-12 flex items-center justify-center">
+        <Card className="border-border/50">
+          <CardContent className="text-center py-12">
+            <div className="flex justify-center items-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            </div>
+            <p className="text-muted-foreground mt-4">Loading Data...</p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
 
   if (!role) {
     return (
