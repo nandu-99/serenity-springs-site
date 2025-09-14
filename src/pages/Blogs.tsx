@@ -228,7 +228,7 @@ const Blogs = () => {
         </div>
 
         {/* Newsletter CTA */}
-        <Card className="mt-12 border-primary/20 bg-gradient-soft">
+        {/* <Card className="mt-12 border-primary/20 bg-gradient-soft">
           <CardContent className="py-8 text-center">
             <h2 className="text-2xl font-heading font-bold text-foreground mb-4">
               Stay Informed
@@ -246,7 +246,7 @@ const Blogs = () => {
               <Button>Subscribe</Button>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </div>
   );
